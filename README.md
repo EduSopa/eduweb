@@ -24,7 +24,7 @@ Are you building something similar or experimenting with AI and digital storytel
 Share your thoughts and experiences—you might be featured in future articles!
 
 - [Open an Issue for feedback or ideas](https://github.com/EduSopa/eduweb/issues)
-- [Join Discussions (if enabled)](https://github.com/EduSopa/eduweb/discussions)
+- [Join Discussions](https://github.com/EduSopa/eduweb/discussions)
 
 ## 🤖 Discover GitHub Copilot
 
