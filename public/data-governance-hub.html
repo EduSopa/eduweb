@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Governance Hub | dsm-firmenich Data Office</title>
+<meta name="description" content="The dsm-firmenich Data Office home for domain ownership, governance guidance and data literacy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1A1A1A;
+    --paper: #FFFFFF;
+    --sky: #D6E7F2;
+    --blue: #48A2CF;
+    --orange: #F08B1F;
+    --lime: #B2BF00;
+    --forest: #0F3B2E;
+    --mist: #F2F0EE;
+    --warm-grey: #B6ACA1;
+    --line: rgba(26, 26, 26, 0.12);
+    --radius: 4px;
+    --radius-sm: 3px;
+    --font: 'DM Sans', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.4em;
+  }
+
+  p { margin: 0 0 1em; }
+
+  a {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  a:hover { color: var(--forest); }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    position: relative;
+    min-height: 260px;
+    height: clamp(260px, 30vw, 400px);
+    display: flex;
+    align-items: center;
+    background-image:
+      linear-gradient(to right, rgba(26,26,26,0.90) 0%, rgba(26,26,26,0.68) 40%, rgba(26,26,26,0.22) 78%, rgba(26,26,26,0.05) 100%),
+      url('HERO-IMAGE-URL-HERE');
+    background-size: cover;
+    background-position: center;
+    color: var(--paper);
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -80px;
+    bottom: -80px;
+    width: 260px;
+    height: 260px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 50%;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    padding: 32px 0;
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-transform: lowercase;
+    margin-bottom: 22px;
+  }
+
+  .wordmark .dots {
+    display: inline-flex;
+    gap: 4px;
+  }
+
+  .wordmark .dots i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--orange);
+    display: block;
+  }
+
+  .wordmark .dots i:nth-child(2) { background: var(--lime); }
+  .wordmark .dots i:nth-child(3) { background: var(--blue); }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--sky);
+    margin: 0 0 10px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    max-width: 14ch;
+    margin-bottom: 12px;
+  }
+
+  .hero-sub {
+    max-width: 46ch;
+    font-size: 1.02rem;
+    color: rgba(255,255,255,0.92);
+    margin: 0;
+  }
+
+  /* ---------- Sticky nav ---------- */
+
+  .hub-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hub-nav-scroll {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: thin;
+  }
+
+  .hub-nav a {
+    flex: 0 0 auto;
+    display: inline-block;
+    padding: 16px 18px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  .hub-nav a:hover,
+  .hub-nav a:focus-visible {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+  }
+
+  /* ---------- Section shell ---------- */
+
+  section {
+    padding: 56px 0;
+    scroll-margin-top: 56px;
+  }
+
+  .section-head {
+    max-width: 62ch;
+    margin-bottom: 32px;
+  }
+
+  .section-head .kicker {
+    display: inline-flex;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+
+  .section-head .kicker i {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--blue);
+    display: block;
+  }
+
+  .section-head .kicker i:nth-child(2) { background: var(--lime); }
+  .section-head .kicker i:nth-child(3) { background: var(--orange); }
+
+  .section-head h2 {
+    font-size: 1.7rem;
+  }
+
+  .section-head p {
+    color: rgba(26,26,26,0.72);
+  }
+
+  /* ---------- Domain map ---------- */
+
+  .map-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 22px;
+    padding: 14px 16px;
+    background: var(--mist);
+    border-radius: var(--radius);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    flex: 0 0 auto;
+  }
+
+  .dot--activated { background: var(--lime); }
+  .dot--in-activation { background: var(--orange); }
+  .dot--not-started { background: var(--warm-grey); }
+
+  .domain-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .domain-card {
+    text-align: left;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .domain-card:hover {
+    border-color: var(--blue);
+  }
+
+  .domain-card[aria-pressed="true"] {
+    border-color: var(--blue);
+    background: var(--sky);
+  }
+
+  .domain-card .name-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .domain-card h3 {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .domain-card .meta {
+    font-size: 0.8rem;
+    color: rgba(26,26,26,0.65);
+  }
+
+  .domain-card[aria-pressed="true"] .meta {
+    color: rgba(26,26,26,0.75);
+  }
+
+  .detail-rail {
+    background: var(--mist);
+    border-radius: var(--radius);
+    padding: 24px;
+    align-self: start;
+  }
+
+  .detail-rail .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+
+  .detail-rail h3 {
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+  }
+
+  .detail-rail .summary {
+    color: rgba(26,26,26,0.75);
+    font-size: 0.94rem;
+  }
+
+  .detail-rail dl {
+    margin: 18px 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 14px;
+    font-size: 0.9rem;
+  }
+
+  .detail-rail dt {
+    font-weight: 600;
+    color: rgba(26,26,26,0.6);
+  }
+
+  .detail-rail dt abbr {
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(26,26,26,0.4);
+  }
+
+  .detail-rail dd {
+    margin: 0;
+  }
+
+  .detail-rail h4 {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(26,26,26,0.6);
+    margin-bottom: 8px;
+  }
+
+  .detail-rail .applies-list {
+    margin: 0 0 20px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .detail-rail .applies-list li {
+    padding: 8px 0;
+    border-top: 1px solid var(--line);
+    font-size: 0.9rem;
+  }
+
+  .detail-rail .applies-list li:first-child {
+    border-top: none;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 11px 18px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn:hover { background: var(--forest); color: var(--paper); }
+
+  .btn--outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+
+  .btn--outline:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* ---------- Lower strip ---------- */
+
+  .lower-strip {
+    background: var(--mist);
+  }
+
+  .strip-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .strip-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .strip-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .strip-card .strip-lede {
+    font-size: 0.87rem;
+    color: rgba(26,26,26,0.68);
+    margin-bottom: 16px;
+  }
+
+  .updates-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .updates-list li {
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .updates-list li:first-child { border-top: none; }
+
+  .updates-list time {
+    display: block;
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--blue);
+    margin-bottom: 3px;
+  }
+
+  .updates-list .update-title {
+    font-weight: 600;
+    font-size: 0.92rem;
+    margin: 0 0 2px;
+  }
+
+  .updates-list .update-body {
+    font-size: 0.85rem;
+    color: rgba(26,26,26,0.68);
+    margin: 0;
+  }
+
+  .replace-note {
+    font-size: 0.76rem;
+    font-style: italic;
+    color: rgba(26,26,26,0.5);
+    margin-top: 14px;
+  }
+
+  /* Governance Quest */
+
+  .quest-progress {
+    margin-bottom: 14px;
+  }
+
+  .quest-progress-track {
+    height: 6px;
+    background: var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .quest-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--lime);
+    transition: width 0.25s ease;
+  }
+
+  .quest-progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.76rem;
+    color: rgba(26,26,26,0.6);
+    margin-top: 6px;
+  }
+
+  .quest-rank {
+    font-weight: 700;
+    color: var(--forest);
+  }
+
+  .quest-question {
+    font-size: 0.94rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .quest-options {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .quest-option {
+    width: 100%;
+    text-align: left;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-size: 0.87rem;
+  }
+
+  .quest-option:hover:not(:disabled) {
+    border-color: var(--blue);
+  }
+
+  .quest-option[data-state="correct"] {
+    border-color: var(--lime);
+    background: rgba(178, 191, 0, 0.14);
+  }
+
+  .quest-option[data-state="incorrect"] {
+    border-color: var(--orange);
+    background: rgba(240, 139, 31, 0.12);
+  }
+
+  .quest-option:disabled {
+    cursor: default;
+    opacity: 0.75;
+  }
+
+  .quest-feedback {
+    font-size: 0.86rem;
+    background: var(--mist);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    margin-bottom: 14px;
+  }
+
+  .quest-feedback strong { display: block; margin-bottom: 4px; }
+
+  .quest-next {
+    align-self: flex-start;
+  }
+
+  .quest-summary {
+    text-align: center;
+    padding: 6px 0;
+  }
+
+  .quest-summary .quest-rank {
+    font-size: 1.4rem;
+    display: block;
+    margin: 6px 0 4px;
+  }
+
+  /* Ask the Data Office */
+
+  .ask-frame {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--paper);
+    margin-bottom: 14px;
+  }
+
+  .ask-frame iframe {
+    display: block;
+    width: 100%;
+    height: 320px;
+    border: none;
+  }
+
+  .ask-placeholder-note {
+    font-size: 0.76rem;
+    color: rgba(26,26,26,0.5);
+    padding: 8px 12px;
+    border-top: 1px dashed var(--line);
+    font-style: italic;
+  }
+
+  .ask-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .ask-chip {
+    background: var(--sky);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--forest);
+  }
+
+  .ask-chip:hover {
+    border-color: var(--blue);
+  }
+
+  .ask-chip-response {
+    font-size: 0.82rem;
+    color: rgba(26,26,26,0.65);
+    min-height: 1.4em;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    background: var(--forest);
+    color: var(--paper);
+    padding: 40px 0 28px;
+  }
+
+  footer .wordmark { color: var(--paper); }
+
+  footer p {
+    color: rgba(255,255,255,0.78);
+    font-size: 0.85rem;
+    max-width: 60ch;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.16);
+  }
+
+  .footer-links a {
+    color: var(--sky);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .footer-links a:hover { color: var(--lime); }
+
+  /* ---------- Responsive ---------- */
+
+  @media (min-width: 1041px) {
+    .map-layout {
+      grid-template-columns: 1fr 340px;
+      align-items: start;
+    }
+    .detail-rail {
+      position: sticky;
+      top: 72px;
+    }
+  }
+
+  @media (max-width: 1040px) {
+    .domain-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .strip-grid {
+      grid-template-columns: 1fr;
+    }
+    section { padding: 40px 0; }
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 0 16px; }
+    .detail-rail { padding: 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="wordmark">dsm-firmenich<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+    <p class="eyebrow">Digital and Technology, Data Office</p>
+    <h1>Data Governance Hub</h1>
+    <p class="hero-sub">Find who owns each type of data, what good practice looks like here and how to get a question answered without waiting for a meeting.</p>
+  </div>
+</header>
+
+<nav class="hub-nav" aria-label="Hub sections">
+  <div class="wrap hub-nav-scroll">
+    <a href="#domain-map">Domain map</a>
+    <a href="#updates">Updates</a>
+    <a href="#quest">Governance Quest</a>
+    <a href="#ask">Ask the Data Office</a>
+    <a href="LIBRARY-URL-HERE">Library</a>
+  </div>
+</nav>
+
+<main>
+
+  <section id="domain-map">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker" aria-hidden="true"><i></i><i></i><i></i></span>
+        <h2>The domain map</h2>
+        <p>Data at dsm-firmenich is organised into eleven business data domains. Each one has an owner, a steward network and a set of documents that actually apply to it. Pick a domain to see what that means in practice.</p>
+      </div>
+
+      <div class="legend" aria-hidden="false">
+        <span class="legend-item"><span class="dot dot--activated"></span>Activated</span>
+        <span class="legend-item"><span class="dot dot--in-activation"></span>In activation</span>
+        <span class="legend-item"><span class="dot dot--not-started"></span>Not started</span>
+      </div>
+
+      <div class="map-layout">
+        <ul class="domain-grid" id="domainGrid" role="list" aria-label="Business data domains">
+          <!-- Cards are rendered by JavaScript from the domainData array below. -->
+        </ul>
+
+        <aside class="detail-rail" id="detailRail" aria-live="polite" aria-label="Selected domain detail">
+          <!-- Populated by JavaScript on load and on card selection. -->
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="lower-strip">
+    <div class="wrap strip-grid">
+
+      <article class="strip-card" id="updates" aria-labelledby="updatesHeading">
+        <h3 id="updatesHeading">Updates</h3>
+        <p class="strip-lede">The latest from the Data Office, in one place.</p>
+        <ul class="updates-list">
+          <li>
+            <time datetime="2026-07-21">21 July 2026</time>
+            <p class="update-title">Product domain moves to activated</p>
+            <p class="update-body">Ownership, stewardship and the first wave of use cases are now confirmed and live.</p>
+          </li>
+          <li>
+            <time datetime="2026-07-08">08 July 2026</time>
+            <p class="update-title">New guidance on external data sharing</p>
+            <p class="update-body">A short, plain language guide to what to check before data leaves the company.</p>
+          </li>
+          <li>
+            <time datetime="2026-06-24">24 June 2026</time>
+            <p class="update-title">Data literacy sessions open for registration</p>
+            <p class="update-body">Live sessions for every region, run by the steward network.</p>
+          </li>
+        </ul>
+        <p class="replace-note">This list is a placeholder. Replace with the native SharePoint News web part.</p>
+      </article>
+
+      <article class="strip-card" id="quest" aria-labelledby="questHeading">
+        <h3 id="questHeading">Governance Quest</h3>
+        <p class="strip-lede">Three real situations. See how your instincts hold up.</p>
+
+        <div class="quest-progress">
+          <div class="quest-progress-track">
+            <div class="quest-progress-fill" id="questProgressFill"></div>
+          </div>
+          <div class="quest-progress-labels">
+            <span id="questProgressLabel">Question 1 of 3</span>
+            <span>Rank: <span class="quest-rank" id="questRankLabel">Explorer</span></span>
+          </div>
+        </div>
+
+        <div id="questBody"></div>
+      </article>
+
+      <article class="strip-card" id="ask" aria-labelledby="askHeading">
+        <h3 id="askHeading">Ask the Data Office</h3>
+        <p class="strip-lede">A quick way in, without opening a ticket.</p>
+
+        <div class="ask-frame">
+          <iframe id="askIframe" src="COPILOT-STUDIO-EMBED-URL" title="Ask the Data Office assistant" loading="lazy"></iframe>
+          <p class="ask-placeholder-note">COPILOT-STUDIO-EMBED-URL is a placeholder. Replace with the published Copilot Studio web channel URL.</p>
+        </div>
+
+        <div class="ask-chips" id="askChips" role="list" aria-label="Example questions">
+          <!-- Chip buttons are rendered by JavaScript from the exampleQuestions array below. -->
+        </div>
+        <p class="ask-chip-response" id="askChipResponse" aria-live="polite"></p>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark">dsm-firmenich<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+    <p>This hub is maintained by the Data Office within Digital and Technology. Content is reviewed on a regular cycle so it stays accurate as domains move through activation.</p>
+    <div class="footer-links">
+      <a href="LIBRARY-URL-HERE">Document library</a>
+      <a href="DATA-COUNCIL-URL-HERE">Data Council</a>
+      <a href="DATA-OFFICE-CONTACT-URL-HERE">Contact the Data Office</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* =========================================================================
+     PLACEHOLDER DATA. Replace with the real domain map before launch.
+     One object per business data domain. To add or update a domain, edit
+     or add an object here. Nothing elsewhere in the file needs to change.
+
+     status must be one of: 'activated' | 'in-activation' | 'not-started'
+     documents is the short list shown under "What applies here".
+     ========================================================================= */
+  var domainData = [
+    {
+      id: 'customer',
+      name: 'Customer',
+      status: 'activated',
+      owner: '[Owner Name]',
+      dpl: '[DPL Name]',
+      stewardCount: 6,
+      useCaseCount: 12,
+      summary: 'Everything the company holds about the people and organisations who buy from us, from contact details to consent.',
+      documents: ['Data Classification Standard', 'Consent and Privacy Notice Standard', 'Data Sharing Policy for External Partners']
+    },
+    {
+      id: 'product',
+      name: 'Product',
+      status: 'activated',
+      owner: '[Owner Name]',
+      dpl: '[DPL Name]',
+      stewardCount: 5,
+      useCaseCount: 9,
+      summary: 'The single view of what we make and sell, including specifications, formulations and certifications.',
+      documents: ['Master Data Management Guideline', 'Data Quality Standard', 'Metadata and Glossary Standard']
+    },
+    {
+      id: 'supplier',
+      name: 'Supplier and Vendor',
+      status: 'in-activation',
+      owner: '[Owner Name]',
+      dpl: '[DPL Name]',
+      stewardCount: 3,
+      useCaseCount: 4,
+      summary: 'Who we buy from and work with, and the agreements that define how their data moves with ours.',
+      documents: ['Third Party Data Exchange Procedure', 'Data Sharing Policy for External Partners', 'Access and Entitlement Guideline']
+    },
+    {
+      id: 'material',
+      name: 'Material and Ingredient',
+      status: 'activated',
+      owner: '[Owner Name]',
+      dpl: '[DPL Name]',
+      stewardCount: 4,
+      useCaseCount: 7,
+      summary: 'The raw materials and ingredients behind every product, tracked from source to specification.',
+      documents: ['Master Data Management Guideline', 'Data Quality Standard', 'Metadata and Glossary Standard']
+    },
+    {
+      id: 'employee',
+      name: 'Employee and Workforce',
+      status: 'in-activation',
+      owner: '[Owner Name]',
+      dpl: '[DPL Name]',
+      stewardCount: 3,
+      useCaseCount: 5,
+      summary: 'Workforce data across the company, handled with the extra care that people data always deserves.',
+      documents: ['Data Classification Standard', 'Consent and Privacy Notice Standard', 'Data Retention and Disposal Schedule']
+    },
+    {
+      id: 'finance',
+      name: 'Finance',
+      status: 'activated',
+      owner: '[Owner Name]',
+      dpl: '[DPL Name]',
+      stewardCount: 4,
+      useCaseCount: 6,
+      summary: 'The financial data that underpins reporting, planning and every number the company stands behind.',
+      documents: ['Data Classification Standard', 'Access and Entitlement Guideline', 'Data Retention and Disposal Schedule']
+    },
+    {
+      id: 'rd-innovation',
+      name: 'R and D and Innovation',
+      status: 'not-started',
+      owner: '[Owner Name]',
+      dpl: '[DPL Name]',
+      stewardCount: 2,
+      useCaseCount: 2,
+      summary: 'Research data, trial results and the early evidence that new products are eventually built on.',
+      documents: ['AI and Automated Decision Making Policy', 'Data Product Playbook', 'Metadata and Glossary Standard']
+    },
+    {
+      id: 'quality',
+      name: 'Quality and Compliance',
+      status: 'in-activation',
+      owner: '[Owner Name]',
+      dpl: '[DPL Name]',
+      stewardCount: 3,
+      useCaseCount: 5,
+      summary: 'The records that prove what we say about our products is true, and that it stays true over time.',
+      documents: ['Data Quality Standard', 'Domain Ownership Charter', 'Data Retention and Disposal Schedule']
+    },
+    {
+      id: 'manufacturing',
+      name: 'Manufacturing and Supply Chain',
+      status: 'activated',
+      owner: '[Owner Name]',
+      dpl: '[DPL Name]',
+      stewardCount: 5,
+      useCaseCount: 8,
+      summary: 'Plant, production and logistics data that keeps products moving from site to shelf.',
+      documents: ['Master Data Management Guideline', 'Third Party Data Exchange Procedure', 'Data Quality Standard']
+    },
+    {
+      id: 'sales-commercial',
+      name: 'Sales and Commercial',
+      status: 'in-activation',
+      owner: '[Owner Name]',
+      dpl: '[DPL Name]',
+      stewardCount: 4,
+      useCaseCount: 7,
+      summary: 'Orders, pricing and commercial performance data used across every region we sell into.',
+      documents: ['Data Sharing Policy for External Partners', 'Data Product Playbook', 'Access and Entitlement Guideline']
+    },
+    {
+      id: 'sustainability',
+      name: 'Sustainability',
+      status: 'not-started',
+      owner: '[Owner Name]',
+      dpl: '[DPL Name]',
+      stewardCount: 2,
+      useCaseCount: 3,
+      summary: 'The evidence behind our sustainability claims, from raw material sourcing to reported impact.',
+      documents: ['Data Quality Standard', 'Metadata and Glossary Standard', 'Domain Ownership Charter']
+    }
+  ];
+
+  var STATUS_LABEL = {
+    'activated': 'Activated',
+    'in-activation': 'In activation',
+    'not-started': 'Not started'
+  };
+
+  var domainGrid = document.getElementById('domainGrid');
+  var detailRail = document.getElementById('detailRail');
+  var currentDomainId = domainData.length ? domainData[0].id : null;
+
+  function buildCard(domain) {
+    var li = document.createElement('li');
+    var btn = document.createElement('button');
+    btn.className = 'domain-card';
+    btn.type = 'button';
+    btn.setAttribute('aria-pressed', domain.id === currentDomainId ? 'true' : 'false');
+    btn.dataset.domainId = domain.id;
+
+    var nameRow = document.createElement('div');
+    nameRow.className = 'name-row';
+
+    var dot = document.createElement('span');
+    dot.className = 'dot dot--' + domain.status;
+    dot.setAttribute('aria-hidden', 'true');
+
+    var h3 = document.createElement('h3');
+    h3.textContent = domain.name;
+
+    nameRow.appendChild(dot);
+    nameRow.appendChild(h3);
+
+    var meta = document.createElement('p');
+    meta.className = 'meta';
+    meta.textContent = domain.stewardCount + ' stewards · ' + domain.useCaseCount + ' active use cases';
+
+    var status = document.createElement('p');
+    status.className = 'meta';
+    status.textContent = STATUS_LABEL[domain.status];
+
+    btn.appendChild(nameRow);
+    btn.appendChild(meta);
+    btn.appendChild(status);
+
+    btn.addEventListener('click', function () {
+      selectDomain(domain.id);
+    });
+
+    li.appendChild(btn);
+    return li;
+  }
+
+  function renderGrid() {
+    domainGrid.innerHTML = '';
+    domainData.forEach(function (domain) {
+      domainGrid.appendChild(buildCard(domain));
+    });
+  }
+
+  function renderRail(domain) {
+    detailRail.innerHTML = '';
+
+    var badge = document.createElement('span');
+    badge.className = 'status-badge';
+    var badgeDot = document.createElement('span');
+    badgeDot.className = 'dot dot--' + domain.status;
+    badgeDot.setAttribute('aria-hidden', 'true');
+    badge.appendChild(badgeDot);
+    badge.appendChild(document.createTextNode(STATUS_LABEL[domain.status]));
+
+    var h3 = document.createElement('h3');
+    h3.textContent = domain.name;
+
+    var summary = document.createElement('p');
+    summary.className = 'summary';
+    summary.textContent = domain.summary;
+
+    var dl = document.createElement('dl');
+    var fields = [
+      ['Owner', domain.owner],
+      ['DPL', domain.dpl, 'Data Product Lead'],
+      ['Stewards', String(domain.stewardCount)],
+      ['Active use cases', String(domain.useCaseCount)]
+    ];
+    fields.forEach(function (field) {
+      var dt = document.createElement('dt');
+      if (field[2]) {
+        var abbr = document.createElement('abbr');
+        abbr.title = field[2];
+        abbr.textContent = field[0];
+        dt.appendChild(abbr);
+      } else {
+        dt.textContent = field[0];
+      }
+      var dd = document.createElement('dd');
+      dd.textContent = field[1];
+      dl.appendChild(dt);
+      dl.appendChild(dd);
+    });
+
+    var h4 = document.createElement('h4');
+    h4.textContent = 'What applies here';
+
+    var list = document.createElement('ul');
+    list.className = 'applies-list';
+    domain.documents.forEach(function (docTitle) {
+      var li = document.createElement('li');
+      li.textContent = docTitle;
+      list.appendChild(li);
+    });
+
+    var askBtn = document.createElement('button');
+    askBtn.type = 'button';
+    askBtn.className = 'btn';
+    askBtn.textContent = 'Ask the assistant about ' + domain.name;
+    askBtn.addEventListener('click', function () {
+      askAboutDomain(domain.name);
+    });
+
+    detailRail.appendChild(badge);
+    detailRail.appendChild(h3);
+    detailRail.appendChild(summary);
+    detailRail.appendChild(dl);
+    detailRail.appendChild(h4);
+    detailRail.appendChild(list);
+    detailRail.appendChild(askBtn);
+  }
+
+  function selectDomain(domainId) {
+    currentDomainId = domainId;
+    var buttons = domainGrid.querySelectorAll('.domain-card');
+    buttons.forEach(function (btn) {
+      btn.setAttribute('aria-pressed', btn.dataset.domainId === domainId ? 'true' : 'false');
+    });
+    var domain = domainData.filter(function (d) { return d.id === domainId; })[0];
+    if (domain) {
+      renderRail(domain);
+    }
+  }
+
+  function askAboutDomain(domainName) {
+    var responseEl = document.getElementById('askChipResponse');
+    var askSection = document.getElementById('ask');
+    if (responseEl) {
+      responseEl.textContent = 'Try asking the assistant above about the ' + domainName + ' domain.';
+    }
+    if (askSection && askSection.scrollIntoView) {
+      askSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  renderGrid();
+  if (domainData.length) {
+    renderRail(domainData[0]);
+  }
+
+  /* =========================================================================
+     Ask the Data Office: example question chips.
+     PLACEHOLDER DATA. Replace with the questions the team expects most.
+     ========================================================================= */
+  var exampleQuestions = [
+    'Who owns Customer data?',
+    'What applies when I share data outside the company?',
+    'How long are AI assistant logs kept?',
+    'Which domain covers supplier contracts?'
+  ];
+
+  var askChips = document.getElementById('askChips');
+  exampleQuestions.forEach(function (question) {
+    var chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'ask-chip';
+    chip.textContent = question;
+    chip.addEventListener('click', function () {
+      var responseEl = document.getElementById('askChipResponse');
+      if (responseEl) {
+        responseEl.textContent = 'Try asking the assistant above: “' + question + '”';
+      }
+    });
+    askChips.appendChild(chip);
+  });
+
+  /* =========================================================================
+     Governance Quest. State is kept in memory only, nothing is stored
+     between visits. PLACEHOLDER CONTENT, review scenarios with the Data
+     Office before launch.
+     ========================================================================= */
+  var quizData = [
+    {
+      question: 'A colleague wants to send customer purchase data to an external agency for a campaign, and needs it today. What should happen first?',
+      options: [
+        'Send the file now, the deadline matters most',
+        'Check the data classification and the approved sharing route before anything leaves the company',
+        'Remove the customer names yourself and send it',
+        'Wait for the next governance meeting to ask'
+      ],
+      correctIndex: 1,
+      feedback: 'External sharing depends on how the data is classified and which route is approved for it. Checking first protects the agency as much as it protects us, and it is usually faster than fixing a mistake afterwards.'
+    },
+    {
+      question: 'Who is accountable for the quality and definition of data inside a business data domain?',
+      options: [
+        'The Data Office, on its own',
+        'The IT service desk',
+        'The domain owner, supported by that domain’s steward network',
+        'Whoever happened to create the dataset'
+      ],
+      correctIndex: 2,
+      feedback: 'The domain owner is accountable, with stewards doing the day to day work of keeping definitions and quality consistent. The Data Office sets the standards and supports the network, it does not own the data itself.'
+    },
+    {
+      question: 'An internal AI assistant keeps a log of the questions people ask it. How long should those logs be kept?',
+      options: [
+        'Forever, text logs are harmless',
+        'For as long as the retention schedule for that data domain and use case says',
+        'Until someone remembers to delete them',
+        'It does not matter, nobody reads them'
+      ],
+      correctIndex: 1,
+      feedback: 'An AI log is a record like any other. Retention follows the schedule tied to its data domain and use case, not a default assumption that logs can sit indefinitely or vanish whenever convenient.'
+    }
+  ];
+
+  var RANKS = ['Explorer', 'Steward', 'Navigator', 'Architect'];
+
+  var quest = {
+    index: 0,
+    correctCount: 0,
+    answered: false
+  };
+
+  var questBody = document.getElementById('questBody');
+  var questProgressFill = document.getElementById('questProgressFill');
+  var questProgressLabel = document.getElementById('questProgressLabel');
+  var questRankLabel = document.getElementById('questRankLabel');
+
+  function updateQuestProgress() {
+    var total = quizData.length;
+    var completed = Math.min(quest.index, total);
+    var pct = (completed / total) * 100;
+    questProgressFill.style.width = pct + '%';
+    if (quest.index < total) {
+      questProgressLabel.textContent = 'Question ' + (quest.index + 1) + ' of ' + total;
+    } else {
+      questProgressLabel.textContent = 'Complete';
+    }
+    questRankLabel.textContent = RANKS[quest.correctCount];
+  }
+
+  function renderQuestion() {
+    questBody.innerHTML = '';
+    var q = quizData[quest.index];
+
+    var qEl = document.createElement('p');
+    qEl.className = 'quest-question';
+    qEl.textContent = q.question;
+    questBody.appendChild(qEl);
+
+    var list = document.createElement('ul');
+    list.className = 'quest-options';
+
+    q.options.forEach(function (optionText, optionIndex) {
+      var li = document.createElement('li');
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'quest-option';
+      btn.textContent = optionText;
+      btn.addEventListener('click', function () {
+        answerQuestion(optionIndex);
+      });
+      li.appendChild(btn);
+      list.appendChild(li);
+    });
+
+    questBody.appendChild(list);
+    updateQuestProgress();
+  }
+
+  function answerQuestion(chosenIndex) {
+    if (quest.answered) { return; }
+    quest.answered = true;
+
+    var q = quizData[quest.index];
+    var correct = chosenIndex === q.correctIndex;
+    if (correct) { quest.correctCount += 1; }
+
+    var optionButtons = questBody.querySelectorAll('.quest-option');
+    optionButtons.forEach(function (btn, i) {
+      btn.disabled = true;
+      if (i === q.correctIndex) {
+        btn.setAttribute('data-state', 'correct');
+      } else if (i === chosenIndex) {
+        btn.setAttribute('data-state', 'incorrect');
+      }
+    });
+
+    var feedback = document.createElement('div');
+    feedback.className = 'quest-feedback';
+    var strong = document.createElement('strong');
+    strong.textContent = correct ? 'Correct.' : 'Not quite.';
+    var body = document.createElement('span');
+    body.textContent = q.feedback;
+    feedback.appendChild(strong);
+    feedback.appendChild(body);
+    questBody.appendChild(feedback);
+
+    var nextBtn = document.createElement('button');
+    nextBtn.type = 'button';
+    nextBtn.className = 'btn btn--outline quest-next';
+    nextBtn.textContent = (quest.index + 1 < quizData.length) ? 'Next question' : 'See your rank';
+    nextBtn.addEventListener('click', advanceQuest);
+    questBody.appendChild(nextBtn);
+
+    questRankLabel.textContent = RANKS[quest.correctCount];
+  }
+
+  function advanceQuest() {
+    quest.index += 1;
+    quest.answered = false;
+    if (quest.index < quizData.length) {
+      renderQuestion();
+    } else {
+      renderQuestSummary();
+    }
+  }
+
+  function renderQuestSummary() {
+    questBody.innerHTML = '';
+    updateQuestProgress();
+
+    var wrap = document.createElement('div');
+    wrap.className = 'quest-summary';
+
+    var p1 = document.createElement('p');
+    p1.textContent = 'You answered ' + quest.correctCount + ' of ' + quizData.length + ' correctly. Your rank:';
+
+    var rank = document.createElement('span');
+    rank.className = 'quest-rank';
+    rank.textContent = RANKS[quest.correctCount];
+
+    var p2 = document.createElement('p');
+    p2.textContent = 'Every rank is a fine place to start. The point is knowing where to check next time.';
+
+    var again = document.createElement('button');
+    again.type = 'button';
+    again.className = 'btn';
+    again.textContent = 'Play again';
+    again.addEventListener('click', function () {
+      quest.index = 0;
+      quest.correctCount = 0;
+      quest.answered = false;
+      renderQuestion();
+    });
+
+    wrap.appendChild(p1);
+    wrap.appendChild(rank);
+    wrap.appendChild(p2);
+    wrap.appendChild(again);
+    questBody.appendChild(wrap);
+  }
+
+  renderQuestion();
+
+})();
+</script>
+
+</body>
+</html>
